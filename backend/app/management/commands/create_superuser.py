@@ -7,6 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         user = User.objects.create_superuser(
             username='testuser', email='test@user.com', password='password')
+
         self.stdout.write(f'User {user.email} created successfully')
 
 
