@@ -3,5 +3,7 @@
 backend/app/__pycache__*
 backend/app/migrations/__pycache__*
 backend/backend/__pycache__*
+backend/backend/management/__pycache__*
+backend/backend/management/commands/__pycache__*
 
 env
