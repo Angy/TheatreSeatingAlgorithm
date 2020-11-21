@@ -8,7 +8,6 @@ export default class Seat extends Component {
 
     render() {
         const {seatData} = this.props;
-        console.log(seatData)
         return (
             <>
             {seatData.map((seat, index )=> 

@@ -17,13 +17,13 @@ export default class Hall extends Component {
                 <h2>Scherm</h2>
                 <div className="row">
                     <div className="col-2">
-                            <Section  sections={hallData.sections}/>
+                            <Section  sections={hallData.sections[0]}/>
                         </div>
                         <div className="col-6">
-                            <Section sections={hallData.sections}/>
+                            <Section sections={hallData.sections[1]}/>
                         </div>
                         <div className="col-2">
-                            <Section sections={hallData.sections}/>
+                            <Section sections={hallData.sections[2]}/>
                         </div>
                     </div>
             </div>

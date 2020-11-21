@@ -15,7 +15,7 @@ export default class Section extends Component {
         const {sections} = this.props;
         return (
             <>
-            {sections.map((section, index )=> <Row rows={section.rows} key={index} />)}
+                <Row rows={sections.rows} />)
             </>
         )
     }
