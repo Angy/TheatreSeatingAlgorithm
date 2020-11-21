@@ -24,9 +24,24 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Seat.objects.count(), 1)
 
-    def test_post_row(self):
+    def test_post_row_without_seats(self):
         row_data = copy.deepcopy(row_fixture)
 
+        url = reverse('rows')
+        response = self.client.post(url, data=row_data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Row.objects.count(), 1)
+
+    def test_post_row_with_seats(self):
+        row_data = copy.deepcopy(row_fixture)
+
+        seats = []
+
+        for i in range(1, 9):
+            seat = Seat.objects.create(id=i, seat_number=i, seat_type='balcony')
+            seats.append(seat)
+
+        row_data['seats'] = seats
         url = reverse('rows')
         response = self.client.post(url, data=row_data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
