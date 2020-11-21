@@ -16,6 +16,12 @@ class User(models.Model):
     def __str__(self):
         return self.user_name
 
+    @property
+    def has_preference(self):
+        if self.seat_preference:
+            return True
+        return False
+
 
 class Seat(models.Model):
     AISLE = 'aisle'
@@ -33,6 +39,16 @@ class Seat(models.Model):
 
     def __str__(self):
         return f'{str(self.seat_number)} : {self.seat_type}'
+
+    def clean(self):
+        if self.allocated_to:
+            self.is_blocked = True
+
+    @property
+    def is_aisle(self):
+        if self.seat_type == 'aisle':
+            return True
+        return False
 
 
 class Row(models.Model):
