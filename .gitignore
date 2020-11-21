@@ -1,0 +1,7 @@
+*.idea
+
+backend/app/__pycache__*
+backend/app/migrations/__pycache__*
+backend/backend/__pycache__*
+
+env
