@@ -28,7 +28,9 @@ class RowAdmin(admin.ModelAdmin):
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "seats":
             kwargs["queryset"] = Seat.objects.filter(is_blocked=False)
-        return super().formfield_for_manytomany(db_field, request, **kwargs)
+        return super(RowAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs
+        )
 
 
 @admin.register(Seat)
