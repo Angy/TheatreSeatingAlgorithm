@@ -24,11 +24,17 @@ class RowAdmin(admin.ModelAdmin):
     filter_horizontal = ('seats', )
     inlines = (SectionInlineAdmin, )
 
+    # display seats that are not blocked yet
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "seats":
+            kwargs["queryset"] = Seat.objects.filter(is_blocked=False)
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+
 
 @admin.register(Seat)
 class SeatAdmin(admin.ModelAdmin):
     model = Seat
-    fields = ('seat_type', 'seat_number', 'allocated_to', )
+    fields = ('seat_type', 'seat_number', 'allocated_to',)
     inlines = (RowInLineAdmin, )
 
 
