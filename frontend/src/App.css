@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.row{
+  display: inline-flex;
+  width: 100%;
+  margin-top: 5%;
+  justify-content: center;
+}
+
+.col-2{
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.col-6{
+  border: 1px solid rgb(0, 17, 255);
+
+}
+.col{
+  border: 1px solid palevioletred;
+}
+
+.square {
+  height: 30px;
+  width: 30px;
+  background-color: #555;
+  margin-right: 10px;
+}
+
+.high-seat{
+  margin-top:9%;
+}
