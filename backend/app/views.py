@@ -1,9 +1,9 @@
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
-from app.models import Hall, User, Row, Seat
+from app.models import Hall, User, Row, Seat, Section
 from app.serializers import HallSerializer, UserSerializer, RowSerializer, \
-    SeatSerializer
+    SeatSerializer, SectionSerializer
 
 
 class HallView(ListAPIView):
@@ -40,4 +40,9 @@ class GetRowView(RetrieveAPIView):
 class SeatsView(ListCreateAPIView):
     queryset = Seat.objects.all()
     serializer_class = SeatSerializer
+
+
+class SectionView(ListCreateAPIView):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
 
