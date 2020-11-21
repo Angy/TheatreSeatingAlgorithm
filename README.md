@@ -58,7 +58,7 @@ See `urls.py` for more details
 ## Frontend Implementation
 
 ####Run
-`cd backend`
+`cd frontend`
 
 `npm start`
 
