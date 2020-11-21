@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Hall from './components/Hall';
+import Axios from 'axios';
+import { ENDPOINT } from './utils';
 
-export default App;
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            halls: []
+        }
+    }
+    componentDidMount = () => {
+        Axios.get(ENDPOINT + '/api/v1/halls/').then((resp) => {
+            this.setState({ halls: resp.data })
+        })
+    }
+
+    render() {
+        const {halls} = this.state;
+        return (
+            <div className="App">
+                {halls.map((hall, index )=> <Hall hallData={hall} key={index} />)}
+            </div>
+        );
+    }
+
+}
