@@ -11,23 +11,19 @@ export default class Hall extends Component {
 
     render() {
         const { hallData } = this.props
-        console.log(">>>>", hallData);
-        /* hallData.sections.map((section)=> {
-            return {[section.section_name]: }
-        }) */
         return (
             <div className="container">
                 <h1>{hallData.name}</h1>
                 <h2>Scherm</h2>
                 <div className="row">
                     <div className="col-2">
-                            <Section  />
+                            <Section  sections={hallData.sections}/>
                         </div>
                         <div className="col-6">
-                            <Section />
+                            <Section sections={hallData.sections}/>
                         </div>
                         <div className="col-2">
-                            <Section />
+                            <Section sections={hallData.sections}/>
                         </div>
                     </div>
             </div>

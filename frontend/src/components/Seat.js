@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 
 export default class Seat extends Component {
-    constructor(){
-        super()
-        this.state = {
-            seats: []
-        }
+    constructor(props) {
+        super(props);
+        // console.log(props)
     }
-    componentDidMount(props){
-        this.setState({seats:''})
-    }
+
     render() {
-        const seats = this.state.seats
-        console.log('*****', seats)
+        const {seatData} = this.props;
+        console.log(seatData)
         return (
-            <div className="square"></div>
+            <>
+            {seatData.map((seat, index )=> 
+                seat.is_blocked === true ? <div className="square"></div> : <div className="green-square"></div>)
+            }
+            </>
         )
+        
     }
 }

@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
-import Seat from './Seat'
+import React, { Component } from 'react';
+import Seat from '../components/Seat'
 
 export default class Row extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+        const {rows} = this.props;
         return (
-            <div className="d-flex">
-                <Seat />
-                <Seat />
-                <Seat />
-                <Seat />
-            </div>
+            <>
+            {rows.map((row, index )=> <Seat seatData={row.seats} key={index} />)}
+            </>
         )
+        
     }
 }
