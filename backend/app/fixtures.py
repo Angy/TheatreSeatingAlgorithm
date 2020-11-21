@@ -20,27 +20,27 @@ user_fixture3 = {
 }
 
 seat_fixture = {
-    "id": 1,
-    "seat_number": 1,
+    "id": 10,
+    "seat_number": 10,
     "seat_type": "aisle",
     "allocated_to": 1
 }
 seat_fixture1 = {
-    "id": 2,
-    "seat_number": 2,
-    "seat_type": "aisle",
+    "id": 11,
+    "seat_number": 11,
+    "seat_type": "balcony",
     "allocated_to": 2
 }
 seat_fixture2 = {
-    "id": 4,
-    "seat_number": 4,
-    "seat_type": "aisle",
+    "id": 12,
+    "seat_number":12,
+    "seat_type": "balcony",
     "allocated_to": None
 }
 
 seat_fixture3 = {
-    "id": 3,
-    "seat_number": 3,
+    "id": 13,
+    "seat_number": 13,
     "seat_type": "aisle",
     "allocated_to": None
 }

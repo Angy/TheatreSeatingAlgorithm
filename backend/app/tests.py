@@ -4,8 +4,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from rest_framework import status
 
-from app.fixtures import row_fixture, seat_fixture, seat_fixture1, seat_fixture2, \
-    seat_fixture3, section_fixture
+from app.fixtures import row_fixture, seat_fixture, section_fixture
 from app.models import Seat, User, Row, Section
 from app.tasks import allocate_seats
 from app.utils import create_seat, create_user
@@ -42,6 +41,14 @@ class TestTasks(TestCase):
         seat_fixture = test_row.pop('seats')
 
         row = Row.objects.create(**test_row)
+
+        # create few extra seats:
+        for i in range(1, 9):
+            extra_seat = Seat.objects.create(id=i,
+                                             seat_number=i,
+                                             seat_type='balcony')
+            row.seats.add(extra_seat)
+
         for seat in seat_fixture:
             seat_obj = create_seat(seat)
             row.seats.add(seat_obj)
@@ -50,7 +57,10 @@ class TestTasks(TestCase):
         section = Section.objects.create(**test_section)
         section.rows.add(row)
 
-        user = create_user()
+        all_users = create_user()
 
         allocate_seats()
-        self.assertEqual(Seat.objects.filter(is_blocked=True).count(), 2)
+
+        users_without_seats = User.objects.filter(seat__is_blocked=False)
+        self.assertEqual(Seat.objects.all().count(), 12)
+        self.assertEqual(Seat.objects.filter(is_blocked=True).count(), 4)
