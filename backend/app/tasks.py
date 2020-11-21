@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+
 from app.models import User, Section, Seat
 
 
@@ -44,7 +46,7 @@ def _get_seats(sections):
         available_seats = Seat.objects.filter(
             row_seat__in=[seat['seats'] for seat in seats], is_blocked=False
         )
-        return available_seats
+        return list(available_seats)
     return None
 
 
@@ -58,18 +60,24 @@ def _get_allocated_seats(user_with_rank):
 
             # check if the user has a seat preference:
             preference = user.has_preference
-            for seat in available_seats:
-
+            for i in range(0, len(available_seats)-1):
                 if preference:
                     allocated_seat = Seat.objects.get(
                         seat_number=preference.seat_number
                     )
+                    if allocated_seat.is_blocked:
+                        raise(f'This seat is blocked. Choose another seat')
                 else:
-                    allocated_seat = Seat.objects.get(seat_number=seat.seat_number)
+                    # if seat is blocked, assign the next
+                    if not available_seats[i].is_blocked:
+                        allocated_seat = available_seats[i]
+                    else:
+                        allocated_seat = available_seats[i+1]
 
-                allocated_seat.allocated_to = user
-                allocated_seat.is_blocked = True
-                allocated_seat.save()
+                    allocated_seat.allocated_to = user
+                    allocated_seat.is_blocked = True
+                    allocated_seat.save()
+
                 allocated_seats.append(allocated_seat)
                 break
 
