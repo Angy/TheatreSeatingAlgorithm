@@ -43,6 +43,16 @@ The seating arrangement algorithm is implemented to categorise the users based
 
 `docker-compose run web bash -c 'python manage.py create_data'`
 
+#### Running the seating algorithm
+
+```
+cd backend
+docker exec -it <web_container_id>' bash (can be found using *docker ps*)
+python manage.py shell
+from app.tasks import *
+allocate_seats()
+```
+
 
 #### APIs
 * api/v1/halls/ 
