@@ -88,3 +88,4 @@ See `urls.py` for more details
 * Auto create aisle seats for a row (only 2 in a row)
 * Auto generate assure adjacent seats are occupied
 * Unique Section & Hall names
+* Raise error incase of insufficient no. of seats
