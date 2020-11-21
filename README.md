@@ -1,6 +1,6 @@
 # Theatre Seating Arrangement
 
-## overview
+## Overview
 
 The seating arrangement algorithm is implemented to categorise the users based
  on their ranks and allocate seats accordingly. The project is split into
@@ -50,14 +50,14 @@ The seating arrangement algorithm is implemented to categorise the users based
 * api/v1/rows/<row_number>
 * api/v1/seats/
 * api/v1/users/
-* api/v1/users/<user_id>
+* api/v1/users/<user_rank>
 
 See `urls.py` for more details
 
 
 ## Frontend Implementation
 
-####Run
+#### Run
 `cd frontend`
 
 `npm start`
