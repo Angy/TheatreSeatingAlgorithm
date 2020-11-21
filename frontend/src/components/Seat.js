@@ -12,7 +12,7 @@ export default class Seat extends Component {
     }
     render() {
         const seats = this.state.seats
-
+        console.log('*****', seats)
         return (
             <div className="square"></div>
         )

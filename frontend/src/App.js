@@ -20,9 +20,17 @@ export default class App extends Component {
 
     render() {
         const {halls} = this.state;
+    
         return (
-            <div className="App">
-                {halls.map((hall, index )=> <Hall hallData={hall} key={index} />)}
+          <div className="container">
+              <div className="App">
+                  {halls.map((hall, index )=> <Hall hallData={hall} key={index} />)}
+                </div>
+                <div className="green-square"></div>
+                  <p>Available</p>
+                <div className="square"></div>
+                <p>Occupied</p>
+
             </div>
         );
     }
