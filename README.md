@@ -12,7 +12,7 @@ The seating arrangement algorithm is implemented to categorise the users based
 * First class users are not restricted to the sections or seats
 * Second class users can be allocated seats from the first balcony or the second
  balcony
-* Second class users can be allocated seats from second balcony
+* Third class users can be allocated seats from second balcony
 * A seat can only be reserved for one user at a time and is blocked once reserved
 * Seating arrangement is based on the user groups (i.e. user ranks)
 * Users can set their seat preference. If the preference is set, the set is
