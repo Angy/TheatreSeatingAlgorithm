@@ -62,3 +62,18 @@ See `urls.py` for more details
 
 `npm start`
 
+##### To start the build
+
+`cd frontend`
+
+`npm run build`
+
+
+## Improvements (Yet to be implemented):
+* Allow adding multiple sections
+* Limit no. of rows per section
+* Limit no. of seats per row
+* Restrict no. of aisle seats based on the alignment of rows/sections
+* Restrict Front row seat based on the alignment of rows
+* Auto create aisle seats for a row (only 2 in a row)
+* Auto generate assure adjacent seats are occupied
