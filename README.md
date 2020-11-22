@@ -67,6 +67,11 @@ See `urls.py` for more details
 
 ## Frontend Implementation
 
+#### Install dependencies
+`cd frontend`
+
+`npm install`
+
 #### Run
 `cd frontend`
 
