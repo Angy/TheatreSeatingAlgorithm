@@ -52,7 +52,7 @@ class Seat(models.Model):
 
 
 class Row(models.Model):
-    row_number = models.PositiveIntegerField(unique=True)
+    row_number = models.PositiveIntegerField()
     seats = models.ManyToManyField(Seat, related_name='row_seat', blank=True)
 
     def __str__(self):

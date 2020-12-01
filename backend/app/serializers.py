@@ -19,11 +19,24 @@ class SeatSerializer(serializers.ModelSerializer):
 
 
 class RowSerializer(serializers.ModelSerializer):
-    seats = SeatSerializer(many=True, read_only=True)
+    seats = SeatSerializer(many=True)
 
     class Meta:
         model = Row
         exclude = ('id', )
+
+    def create(self, data):
+        seats = data.pop('seats')
+        row, _ = Row.objects.get_or_create(row_number=data['row_number'])
+        print(row.seats.count())
+        if row.seats.count() > 20 or len(seats) > 20:
+            raise ValidationError('A row can have only 20 seats')
+        else:
+            for seat in seats:
+                seat_data, _ = Seat.objects.get_or_create(**seat)
+                row.seats.add(seat_data)
+
+        return row
 
 
 class SectionSerializer(serializers.ModelSerializer):
@@ -36,8 +49,6 @@ class SectionSerializer(serializers.ModelSerializer):
     def create(self, data):
         rows = data.pop('rows')
         section, _ = Section.objects.get_or_create(section_name=data['section_name'])
-        print('>>>>>>>>>>>', _)
-        print(section.rows.count())
         if section.rows.count() > 10 or len(rows) > 10:
             raise ValidationError('A section can have only 10 rows')
         else:
