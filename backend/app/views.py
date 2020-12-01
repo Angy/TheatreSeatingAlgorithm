@@ -45,4 +45,3 @@ class SeatsView(ListCreateAPIView):
 class SectionView(ListCreateAPIView):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
-
