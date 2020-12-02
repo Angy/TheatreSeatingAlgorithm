@@ -28,7 +28,6 @@ class RowSerializer(serializers.ModelSerializer):
     def create(self, data):
         seats = data.pop('seats')
         row, _ = Row.objects.get_or_create(row_number=data['row_number'])
-        print(row.seats.count())
         if row.seats.count() > 20 or len(seats) > 20:
             raise ValidationError('A row can have only 20 seats')
         else:
@@ -48,7 +47,10 @@ class SectionSerializer(serializers.ModelSerializer):
 
     def create(self, data):
         rows = data.pop('rows')
-        section, _ = Section.objects.get_or_create(section_name=data['section_name'])
+        section_name = data['section_name']
+        section, _ = Section.objects.get_or_create(
+            section_name=section_name.capitalize()
+        )
         if section.rows.count() > 10 or len(rows) > 10:
             raise ValidationError('A section can have only 10 rows')
         else:

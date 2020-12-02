@@ -13,6 +13,9 @@ The seating arrangement algorithm is implemented to categorise the users based
 * Second class users can be allocated seats from the first balcony or the second
  balcony
 * Third class users can be allocated seats from second balcony
+* Unique Section & Hall names
+* A section can not have more than 10 rows
+* A row can not have more than 20 seats
 * A seat can only be reserved for one user at a time and is blocked once reserved
 * Seating arrangement is based on the user groups (i.e. user ranks)
 * Users can set their seat preference. If the preference is set, the set is
@@ -20,8 +23,7 @@ The seating arrangement algorithm is implemented to categorise the users based
 * Only users with access to a seat in within the section can opt for the
   preference of that seat.
 * Adjacent seats are assigned to the users
-* A section can not have more than 10 rows
-* A row can not have more than 20 seats
+
   
 
 ## Backend Implementation
@@ -87,10 +89,8 @@ See `urls.py` for more details
 
 
 ## Improvements (Yet to be implemented):
-* Allow adding multiple sections
 * Restrict no. of aisle seats based on the alignment of rows/sections
 * Restrict Front row seat based on the alignment of rows
 * Auto create aisle seats for a row (only 2 in a row)
 * Auto generate assure adjacent seats are occupied
-* Unique Section & Hall names
 * Raise error incase of insufficient no. of seats
