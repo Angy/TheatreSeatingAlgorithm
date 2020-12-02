@@ -60,18 +60,9 @@ class Row(models.Model):
 
 
 class Section(models.Model):
-    MAIN_HALL = 'main_hall'
-    FIRST_BALCONY = 'first_balcony'
-    SECOND_BALCONY = 'second_balcony'
-
-    SECTIONS = (
-        (MAIN_HALL, 'Main Hall'),
-        (FIRST_BALCONY, 'First Balcony'),
-        (SECOND_BALCONY, 'Second Balcony'),
-    )
     section_name = models.CharField(max_length=25,
-                                    choices=SECTIONS,
-                                    default='first_balcony')
+                                    unique=True,
+                                    default='Main hall')
     rows = models.ManyToManyField(Row, related_name='section_row')
 
     def __str__(self):
