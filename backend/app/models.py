@@ -70,7 +70,9 @@ class Section(models.Model):
 
 
 class Hall(models.Model):
-    name = models.CharField(max_length=25, default='Zaal 1')
+    name = models.CharField(max_length=25,
+                            unique=True,
+                            default='Zaal 1')
     sections = models.ManyToManyField(Section, related_name='hall_section')
 
     def __str__(self):

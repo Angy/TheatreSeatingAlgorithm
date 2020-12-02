@@ -68,3 +68,12 @@ class HallSerializer(serializers.ModelSerializer):
         model = Hall
         exclude = ('id', )
 
+    def create(self, data):
+        sections = data.pop('sections')
+        hall_name = data.pop('name')
+
+        hall, _ = Hall.objects.get_or_create(name=hall_name.capitalize())
+        for section in sections:
+            section_data, _ = Section.objects.get_or_create(**section)
+            hall.sections.add(section)
+        return hall
