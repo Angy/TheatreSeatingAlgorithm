@@ -16,7 +16,7 @@ export default class App extends Component {
         Axios.get(ENDPOINT + '/api/v1/halls/').then((resp) => {
             this.setState({ halls: resp.data })
         })
-    }
+    };
 
     render() {
         const {halls} = this.state;
