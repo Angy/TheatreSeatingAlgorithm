@@ -11,7 +11,9 @@ export default class Seat extends Component {
             <>
 
             {seatData.map((seat, index )=>
-                seat.is_blocked === true ? <div className="square" key={index}></div> : <div className="green-square" key={index}></div>
+                seat.is_blocked === true ? <div className="square" key={index}>
+                    <p id={'seat'}>{seat.seat_number}</p>
+            </div> : <div className="green-square" key={index}><p id={'seat'}>{seat.seat_number}</p></div>
             )}
             </>
         )
