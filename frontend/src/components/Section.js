@@ -10,7 +10,7 @@ export default class Section extends Component {
         const {sections} = this.props;
         return (
             <>
-                <Row rows={sections.rows} />)
+                <Row rows={sections.rows} />
             </>
         )
     }
