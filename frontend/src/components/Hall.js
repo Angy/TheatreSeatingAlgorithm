@@ -1,6 +1,4 @@
-import Axios from 'axios'
 import React, { Component } from 'react'
-import { ENDPOINT } from '../utils'
 import Section from './Section'
 
 export default class Hall extends Component {
@@ -10,7 +8,7 @@ export default class Hall extends Component {
     }
 
     render() {
-        const { hallData } = this.props
+        const { hallData } = this.props;
         return (
             <div className="container">
                 <h1>{hallData.name}</h1>
