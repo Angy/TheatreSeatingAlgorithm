@@ -1,11 +1,13 @@
 import copy
 
+from django.core import serializers
 from django.test import TestCase, Client
 from django.urls import reverse
 from rest_framework import status
 
 from app.fixtures import row_fixture, seat_fixture, section_fixture
 from app.models import Seat, User, Row, Section
+from app.serializers import RowSerializer
 from app.tasks import allocate_seats
 from app.utils import create_seat, create_user
 
@@ -46,6 +48,22 @@ class TestViews(TestCase):
         response = self.client.post(url, data=row_data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Row.objects.count(), 1)
+
+    def test_post_section_with_rows(self):
+        section_data = copy.deepcopy(section_fixture)
+
+        rows = []
+
+        for i in range(1, 9):
+            row = Row.objects.create(row_number=i)
+            rows.append(row)
+        import json
+        section_data['rows'] = json.loads(serializers.serialize('json', rows))
+        url = reverse('sections')
+        response = self.client.post(url, data=section_data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Section.objects.count(), 1)
+
 
 
 class TestTasks(TestCase):
